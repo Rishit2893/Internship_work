@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.2.final using 
+JasperReports Library version 
+6.21.2-8434a0bd7c3bbc37cbf916f2968d35e4b165821a -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports 
+http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Coffee_Landscape_1" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="df013db5-f76e-44d3-b0df-bcbc46d93160">
+
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="New DataAdapter(2)" />
+
+    <style name="Title" fontName="TimesNewRoman" fontSize="50" isBold="true" />
+    <style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18" />
+    <style name="Columnheader" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true" />
+    <style name="Detail" fontName="Arial" fontSize="12" />
+    <style name="Row" mode="Transparent">
+        <conditionalStyle>
+            <conditionExpression><![CDATA[$V{REPORT_COUNT} % 2 == 0]]></conditionExpression>
+            <style backcolor="#E6DAC3" />
+        </conditionalStyle>
+    </style>
+    <parameter name="Background(CS\NCS)" class="java.lang.String" />
+
+    <queryString language="MongoDbQuery">
+        <![CDATA[{ 
+ 
+            'collectionName': 'bdalab', 
+            'findQuery': { 
+            'TrainingExam1Percentage': {'$ne': ''}, 
+            'TrainingExam2Percentage': {'$ne': ''} 
+            } 
+            }]]>
+    </queryString>
+
+    <field name="Background(CS\NCS)" class="java.lang.String" />
+    <field name="MiddleName" class="java.lang.String" />
+    <field name="TrainingExam1Percentage" class="java.lang.Integer" />
+    <field name="TrainingExam2Percentage" class="java.lang.Integer" />
+    <field name="UniversityName" class="java.lang.String" />
+    <field name="FirstName" class="java.lang.String" />
+
+    <variable name="TrainingExamAvgPercentage" class="java.lang.Integer">
+        <variableExpression><![CDATA[((($F{TrainingExam1Percentage}) + 
+($F{TrainingExam2Percentage})) / 2)]]></variableExpression>
+    </variable>
+
+    <group name="Group1">
+        <groupExpression><![CDATA[$F{UniversityName}]]></groupExpression>
+        <groupHeader>
+            <band height="37">
+                <frame>
+                    <reportElement mode="Opaque" x="-21" y="7" width="843" height="24" forecolor="#B89F7D" backcolor="#F2EBDF" uuid="ff649bda-bbd1-4c2d-bd67-21f69ad64bbf" />
+                    <rectangle>
+                        <reportElement mode="Opaque" x="21" y="0" width="36" height="24" backcolor="#736343" uuid="a7ae31ce-9474-4e4b-9627-eb9152ff7b80" />
+                        <graphicElement>
+                            <pen lineWidth="0.0" />
+                        </graphicElement>
+                    </rectangle>
+                    <textField>
+                        <reportElement style="SubTitle" x="68" y="0" width="755" height="24" forecolor="#736343" uuid="b5a25815-f4ed-4382-9712-d113dc519d4e" />
+                        <textElement>
+                            <font isBold="true" />
+                        </textElement>
+
+                        <textFieldExpression><![CDATA[$F{UniversityName}]]></textFieldExpression>
+                    </textField>
+                </frame>
+            </band>
+        </groupHeader>
+        <groupFooter>
+            <band height="6" />
+        </groupFooter>
+    </group>
+
+    <background>
+        <band splitType="Stretch" />
+    </background>
+
+    <title>
+        <band height="136" splitType="Stretch">
+            <image>
+                <reportElement x="0" y="0" width="164" height="126" uuid="1c003177-754c-448f-8ce1-16868856f545" />
+                <imageExpression><![CDATA["coffee.jpg"]]></imageExpression>
+            </image>
+            <staticText>
+                <reportElement style="Title" x="270" y="0" width="263" height="62" uuid="bc1ce1da-8232-46ea-be55-cec4abb986dd" />
+                <textElement verticalAlignment="Middle" />
+                <text><![CDATA[Student]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="SubTitle" x="303" y="62" width="196" height="22" uuid="f6a78448-8260-4445-a9e0-e3fb53b080d9" />
+                <textElement>
+                    <font fontName="TimesNewRoman" />
+                </textElement>
+                <text><![CDATA[University Group]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="172" y="94" width="383" height="42" uuid="8240065e-64b6-4170-b5d9-6341598e7b35" />
+                <textElement textAlignment="Right">
+                    <font size="10" />
+                </textElement>
+                <text><![CDATA[Youth Power]]></text>
+            </staticText>
+            <image>
+                <reportElement x="633" y="-73" width="219" height="209" uuid="4aa6f4d1-27dc-4b34-9227-59e19ce2c959" />
+
+                <imageExpression><![CDATA["coffee_stain.png"]]></imageExpression>
+            </image>
+        </band>
+    </title>
+    <pageHeader>
+        <band splitType="Stretch" />
+    </pageHeader>
+    <columnHeader>
+        <band height="16" splitType="Stretch">
+            <line>
+                <reportElement positionType="FixRelativeToBottom" x="0" y="15" width="802" height="1" uuid="e9d2002a-c8ee-4649-a258-640dad29110c" />
+                <graphicElement>
+                    <pen lineWidth="0.5" lineColor="#999999" />
+                </graphicElement>
+            </line>
+            <staticText>
+                <reportElement style="Columnheader" x="0" y="0" width="160" height="15" forecolor="#736343" uuid="04bf6b36-4d1f-4a44-8487-dc6f9705c400" />
+                <text><![CDATA[Background(CS\NCS)]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="Columnheader" x="160" y="0" width="160" height="15" forecolor="#736343" uuid="1f16b036-8a29-49dd-9754-6d170977db82" />
+                <text><![CDATA[Middle Name]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="Columnheader" x="320" y="0" width="200" height="15" forecolor="#736343" uuid="5bee68ed-88e5-4fa1-a605-3abe1b8f482c" />
+                <text><![CDATA[TrainingExamAvgPercentage]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="Columnheader" x="640" y="0" width="160" height="15" forecolor="#736343" uuid="21f0291f-c08c-47b0-a4c0-4cc177b59d4d" />
+                <text><![CDATA[First Name]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="15" splitType="Stretch">
+            <frame>
+                <reportElement style="Row" mode="Opaque" x="0" y="0" width="802" height="15" uuid="fa7cec56-4ec1-48e6-a26e-7266a995d174" />
+                <textField textAdjust="StretchHeight">
+                    <reportElement style="Detail" x="0" y="0" width="160" height="15" uuid="78051e7f-6e46-44f2-a3a9-669f5cec495d" />
+
+                    <textFieldExpression><![CDATA[$F{Background(CS\NCS)}]]></textFieldExpression>
+                </textField>
+                <textField textAdjust="StretchHeight">
+                    <reportElement style="Detail" x="160" y="0" width="160" height="15" uuid="8edbe9a3-8014-4b12-81a2-c52f8201ff96" />
+
+                    <textFieldExpression><![CDATA[$F{MiddleName}]]></textFieldExpression>
+                </textField>
+                <textField textAdjust="StretchHeight">
+                    <reportElement style="Detail" x="320" y="0" width="200" height="15" uuid="6798e71b-10b8-4d1f-b56e-9cb56b727867" />
+                    <textFieldExpression><![CDATA[$V{TrainingExamAvgPercentage}]]></textFieldExpression>
+                </textField>
+                <textField textAdjust="StretchHeight">
+                    <reportElement style="Detail" x="640" y="0" width="160" height="15" uuid="6e2c2ba3-2c9b-472f-9920-b3c3b1cc5bfc" />
+                    <textFieldExpression><![CDATA[$F{FirstName}]]></textFieldExpression>
+                </textField>
+            </frame>
+        </band>
+    </detail>
+
+    <columnFooter>
+        <band splitType="Stretch" />
+    </columnFooter>
+    <pageFooter>
+        <band splitType = "Stretch">
+            <frame >
+                <reportElement x = "0" y = "0" width = "842" height = "28" uuid = "2175a76d-f5ec-46b3-b319-e605b8f0e3cf" />
+                <staticText >
+                    <reportElement x = "0" y = "11" width = "421" height = "17" uuid = "16327f53-4345-4074-a28b-263cd0d23ed6" />
+                    <text ><![CDATA[[Page Footer]]>
+                        < / text >
+</staticText >
+<textField >
+<reportElement x = "742" y = "11" width = "100" height = "17" uuid = "f5d7f3f7-5563-44d0-8676-234cfc021fd5" />
+                        <textFieldExpression ><![CDATA[[$V{PAGE_NUMBER }]]></textFieldExpression >
+                    </textField >
+                </frame >
+            </band >
+        </pageFooter >
+        <summary >
+            <band splitType = "Stretch" />
+        </summary >
+    </jasperReport >
